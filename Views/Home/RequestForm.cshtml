@@ -1,0 +1,46 @@
+@model ITEquipmentBorrowApp.Models.ITEquipmentRequest
+<div>
+    <form asp-action="RequestForm" method="post">
+
+        <div>
+            <label asp-for="Name" class="form-label">Your name:</label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="Email" class="form-label">Your email:</label>
+            <input asp-for="Email" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="Phone" class="form-label">Your phone:</label> 
+            <input asp-for="Phone" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="RequesterRole" class="form-label">Role of the person making the request:</label> 
+            <select asp-for="RequesterRole" class="form-control">
+                <option value="">Choose an option</option>
+                <option value="Student">Student</option>
+                <option value="Professor">Professor</option> 
+            </select>
+        </div>
+        <div>
+            <label asp-for="EquipmentType" class="form-label">Type of equipment:</label> 
+            <select asp-for="EquipmentType" class="form-control">
+                <option value="">Choose an option</option>
+                <option value="Laptop">Laptop</option>  
+                <option value="Phone">Phone</option>
+                <option value="Tablet">Tablet</option>
+            </select>
+        </div>
+        <div>
+            <label asp-for="RequestDetails" class="form-label">Reason for the request:</label>
+            <textarea asp-for="RequestDetails" class="form-control"></textarea>
+        </div>
+        <div>
+            <label asp-for="Duration" class="form-label">Duration required: (number of days):</label>
+            <input asp-for="Duration" class="form-control" type="number" />
+        </div>
+        <div style="margin-top:10px">
+        <button class="btn btn-primary" type="submit">Submit Request</button>
+        </div>
+    </form>
+</div>
