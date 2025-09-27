@@ -17,7 +17,7 @@
                     <td>@equipment.EquipmentId</td>
                     <td>@equipment.Type</td>
                     <td>@equipment.Description</td>
-                    <td>@equipment.Availability</td>
+                    <td>@(equipment.Availability ? "Available" : "Not Available")</td>
                 </tr>
             }
         </tbody>
