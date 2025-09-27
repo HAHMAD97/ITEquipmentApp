@@ -1,0 +1,35 @@
+@model IEnumerable<ITEquipmentBorrowApp.Models.ITEquipmentRequest>
+<div>
+    <h2>All Equipment Requests</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Equipment Type</th>
+                <th>Name</th>
+                <th>Role of User</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var request in Model)
+            {
+                <tr>
+                    <td>@request.EquipmentType</td>
+                    <td>@request.Name</td>
+                    <td>@request.RequesterRole</td>
+
+                     <td>
+                    <button type="button" class="btn btn-sm btn-success me-1">
+                        Accept
+                    </button>
+                    <button type="button" class="btn btn-sm btn-danger">
+                        Deny
+                    </button>
+                </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+               

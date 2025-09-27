@@ -50,6 +50,12 @@ public class HomeController : Controller
     { 
         return View(Repository.Equipments.Where(e => e.Availability == true));
     }
+
+    [HttpGet]
+    public ViewResult Requests()
+    {
+        return View(Repository.Requests);
+    }
     
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
