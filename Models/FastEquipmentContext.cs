@@ -1,3 +1,4 @@
+using ITEquipmentBorrowApp.Models;
 using Microsoft.EntityFrameworkCore;
 namespace SportsStore.Models
 {
@@ -5,6 +6,7 @@ namespace SportsStore.Models
     {
         public FastEquipmentContext(DbContextOptions<FastEquipmentContext>
         options) : base(options) { }
-        public DbSet<Product> Products => Set<Product>();
+        public DbSet<ITEquipment> Equipments => Set<ITEquipment>();
+        public DbSet<ITEquipmentRequest> Requests => Set<ITEquipmentRequest>();
     }
 }
