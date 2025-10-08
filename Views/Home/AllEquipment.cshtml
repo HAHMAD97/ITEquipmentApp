@@ -14,10 +14,10 @@
             @foreach (var equipment in Model)
             {
                 <tr>
-                    <td>@equipment.EquipmentId</td>
+                    <td>@equipment.Id</td>
                     <td>@equipment.Type</td>
                     <td>@equipment.Description</td>
-                    <td>@(equipment.Availability ? "Available" : "Not Available")</td>
+                    <td>@(equipment.IsAvailable ? "Available" : "Not Available")</td>
                 </tr>
             }
         </tbody>

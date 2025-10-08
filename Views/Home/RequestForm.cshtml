@@ -3,28 +3,28 @@
     <form asp-action="RequestForm" method="post">
 
         <div>
-            <label asp-for="Name" class="form-label">Your name:</label>
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
+            <label asp-for="Requester.Name" class="form-label">Your name:</label>
+            <input asp-for="Requester.Name" class="form-control" />
+            <span asp-validation-for="Requester.Name" class="text-danger"></span>
         </div>
         <div>
-            <label asp-for="Email" class="form-label">Your email:</label>
-            <input asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
+            <label asp-for="Requester.Email" class="form-label">Your email:</label>
+            <input asp-for="Requester.Email" class="form-control" />
+            <span asp-validation-for="Requester.Email" class="text-danger"></span>
         </div>
         <div>
-            <label asp-for="Phone" class="form-label">Your phone:</label> 
-            <input asp-for="Phone" class="form-control" />
-            <span asp-validation-for="Phone" class="text-danger"></span>
+            <label asp-for="Requester.Phone" class="form-label">Your phone:</label> 
+            <input asp-for="Requester.Phone" class="form-control" />
+            <span asp-validation-for="Requester.Phone" class="text-danger"></span>
         </div>
         <div>
-            <label asp-for="RequesterRole" class="form-label">Role of the person making the request:</label> 
-            <select asp-for="RequesterRole" class="form-control">
+            <label asp-for="Requester.Role" class="form-label">Role of the person making the request:</label> 
+            <select asp-for="Requester.Role" class="form-control">
                 <option value="">Choose an option</option>
                 <option value="Student">Student</option>
                 <option value="Professor">Professor</option> 
             </select>
-            <span asp-validation-for="RequesterRole" class="text-danger"></span>
+            <span asp-validation-for="Requester.Role" class="text-danger"></span>
         </div>
         <div>
             <label asp-for="EquipmentType" class="form-label">Type of equipment:</label> 
@@ -43,9 +43,9 @@
             <span asp-validation-for="RequestDetails" class="text-danger"></span>
         </div>
         <div>
-            <label asp-for="Duration" class="form-label">Duration required: (number of days):</label>
-            <input asp-for="Duration" class="form-control" type="number" />
-            <span asp-validation-for="Duration" class="text-danger"></span>
+            <label asp-for="Borrow.DurationDays" class="form-label">Duration required: (number of days):</label>
+            <input asp-for="Borrow.DurationDays" class="form-control" type="number" />
+            <span asp-validation-for="Borrow.DurationDays" class="text-danger"></span>
         </div>
         <div style="margin-top:10px">
         <button class="btn btn-primary" type="submit">Submit Request</button>

@@ -48,7 +48,7 @@ public class HomeController : Controller
     [HttpGet]
     public ViewResult AvailableEquipment()
     { 
-        return View(Repository.Equipments.Where(e => e.Availability == true));
+        return View(Repository.Equipments.Where(e => e.IsAvailable == true));
     }
 
     [HttpGet]
