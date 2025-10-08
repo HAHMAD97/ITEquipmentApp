@@ -1,6 +1,6 @@
 using ITEquipmentBorrowApp.Models;
 using Microsoft.EntityFrameworkCore;
-namespace SportsStore.Models
+namespace ITEquipmentBorrowApp.Models
 {
     public class FastEquipmentContext : DbContext
     {
