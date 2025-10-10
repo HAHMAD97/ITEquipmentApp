@@ -27,4 +27,5 @@ app.MapControllerRoute(
     .WithStaticAssets();
 
 
+SeedData.EnsurePopulated(app);
 app.Run();
