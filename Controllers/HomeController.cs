@@ -6,11 +6,13 @@ namespace ITEquipmentBorrowApp.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private IEquipmentRepository equipmentRepository;
+    private IRequestRepository requestRepository;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(IEquipmentRepository equipmentRepo, IRequestRepository requestRepo)
     {
-        _logger = logger;
+        equipmentRepository = equipmentRepo;
+        requestRepository = requestRepo;
     }
 
     public IActionResult Index()
@@ -32,7 +34,7 @@ public class HomeController : Controller
     public IActionResult RequestForm(ITEquipmentRequest request)
     {
         if (ModelState.IsValid) {
-            Repository.AddRequest(request);
+            requestRepository.Add(request);
             return View("Confirmation", request);
         } else {
             return View();
@@ -42,19 +44,19 @@ public class HomeController : Controller
     [HttpGet]
     public ViewResult AllEquipment()
     {
-        return View(Repository.Equipments);
+        return View(equipmentRepository.GetAll());
     }
 
     [HttpGet]
     public ViewResult AvailableEquipment()
     { 
-        return View(Repository.Equipments.Where(e => e.IsAvailable == true));
+        return View(equipmentRepository.GetAvailable());
     }
 
     [HttpGet]
     public ViewResult Requests()
     {
-        return View(Repository.Requests);
+        return View(requestRepository.GetAll());
     }
     
 
