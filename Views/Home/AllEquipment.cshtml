@@ -1,7 +1,7 @@
 @model IEnumerable<ITEquipmentBorrowApp.Models.ITEquipment>
 <div>
     <h2>All Equipment</h2>
-    <table class="table">
+    <table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th>Equipment Id</th>
@@ -13,11 +13,20 @@
         <tbody>
             @foreach (var equipment in Model)
             {
-                <tr>
+                <tr class="@(equipment.IsAvailable ? "" : "table-secondary")">
                     <td>@equipment.Id</td>
                     <td>@equipment.Type</td>
                     <td>@equipment.Description</td>
-                    <td>@(equipment.IsAvailable ? "Available" : "Not Available")</td>
+                    <td>
+                        @if (equipment.IsAvailable)
+                        {
+                            <span class="badge bg-success">Available</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Unavailable</span>
+                        }
+                    </td>
                 </tr>
             }
         </tbody>
