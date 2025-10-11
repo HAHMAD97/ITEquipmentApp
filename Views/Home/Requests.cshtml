@@ -4,8 +4,11 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Equipment Type</th>
                 <th>Name</th>
                 <th>Role of User</th>
+                <th>Duration</th>
+                <th>Status</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -13,17 +16,27 @@
             @foreach (var request in Model)
             {
                 <tr>
+                    <td>@request.Equipment.Type</td>
                     <td>@request.Requester.Name</td>
                     <td>@request.Requester.Role</td>
-
-                     <td>
-                    <button type="button" class="btn btn-sm btn-success me-1">
-                        Accept
-                    </button>
-                    <button type="button" class="btn btn-sm btn-danger">
-                        Deny
-                    </button>
-                </td>
+                    <td>@request.Borrow.DurationDays</td>
+                    <td class="@(
+                        request.Status == RequestStatus.Accepted ? "text-success" :
+                        request.Status == RequestStatus.Denied ? "text-danger" :
+                        ""
+                    )">
+                        @request.Status
+                    </td>
+                    <td>
+                        <form asp-action="Accept" method="post" class="d-inline">
+                            <input type="hidden" name="id" value="@request.Id" />
+                            <button type="submit" class="btn btn-success btn-sm">Accept</button>
+                        </form>
+                        <form asp-action="Deny" method="post" class="d-inline">
+                            <input type="hidden" name="id" value="@request.Id" />
+                            <button type="submit" class="btn btn-danger btn-sm">Deny</button>
+                        </form>
+                    </td>
                 </tr>
             }
         </tbody>

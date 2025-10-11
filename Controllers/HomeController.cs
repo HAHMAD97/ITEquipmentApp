@@ -62,7 +62,20 @@ public class HomeController : Controller
     {
         return View(requestRepository.GetAll());
     }
-    
+
+    [HttpPost]
+    public IActionResult Accept(int id)
+    {
+        requestRepository.UpdateStatus(id, RequestStatus.Accepted);
+        return RedirectToAction("Requests");
+    }
+
+    [HttpPost]
+    public IActionResult Deny(int id)
+    {
+        requestRepository.UpdateStatus(id, RequestStatus.Denied);
+        return RedirectToAction("Requests");
+    }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

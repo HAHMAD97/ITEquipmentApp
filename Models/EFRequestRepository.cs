@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using ITEquipmentBorrowApp.Models;
 
 public class EFRequestRepository : IRequestRepository
@@ -9,7 +10,12 @@ public class EFRequestRepository : IRequestRepository
         context = ctx;
     }
 
-    public IQueryable<ITEquipmentRequest> GetAll() => context.Requests;
+    public IQueryable<ITEquipmentRequest> GetAll()
+    {
+        return context.Requests
+            .Include(r => r.Requester)
+            .Include(r => r.Equipment);
+    }
 
     public IQueryable<ITEquipmentRequest> GetPending() =>
         context.Requests.Where(r => r.Status == RequestStatus.Pending);
