@@ -1,51 +1,53 @@
 @model ITEquipmentBorrowApp.Models.ITEquipmentRequest
 <div>
     <form asp-action="RequestForm" method="post">
-
+        <div>
+            <validation-summary asp-validation-summary="All" class="text-danger"></validation-summary>
+        </div>
         <div>
             <label asp-for="Requester.Name" class="form-label">Your name:</label>
-            <input asp-for="Requester.Name" class="form-control" />
-            <span asp-validation-for="Requester.Name" class="text-danger"></span>
+            <input asp-for="Requester.Name" class="form-control @(ViewData.ModelState["Requester.Name"]?.Errors.Count > 0 ? "is-invalid" : "")" />
+            <span asp-validation-for="Requester.Name" class="invalid-feedback"></span>
         </div>
         <div>
             <label asp-for="Requester.Email" class="form-label">Your email:</label>
-            <input asp-for="Requester.Email" class="form-control" />
-            <span asp-validation-for="Requester.Email" class="text-danger"></span>
+            <input asp-for="Requester.Email" class="form-control @(ViewData.ModelState["Requester.Email"]?.Errors.Count > 0 ? "is-invalid" : "")" />
+            <span asp-validation-for="Requester.Email" class="invalid-feedback"></span>
         </div>
         <div>
-            <label asp-for="Requester.Phone" class="form-label">Your phone:</label> 
-            <input asp-for="Requester.Phone" class="form-control" />
-            <span asp-validation-for="Requester.Phone" class="text-danger"></span>
+            <label asp-for="Requester.Phone" class="form-label">Your phone:</label>
+            <input asp-for="Requester.Phone" class="form-control @(ViewData.ModelState["Requester.Phone"]?.Errors.Count > 0 ? "is-invalid" : "")" />
+            <span asp-validation-for="Requester.Phone" class="invalid-feedback"></span>
         </div>
         <div>
             <label asp-for="Requester.Role" class="form-label">Role of the person making the request:</label> 
-            <select asp-for="Requester.Role" class="form-control">
+            <select asp-for="Requester.Role" class="form-control @(ViewData.ModelState["Requester.Role"]?.Errors.Count > 0 ? "is-invalid" : "")">
                 <option value="">Choose an option</option>
                 <option value="Student">Student</option>
                 <option value="Professor">Professor</option> 
             </select>
-            <span asp-validation-for="Requester.Role" class="text-danger"></span>
+            <span asp-validation-for="Requester.Role" class="invalid-feedback"></span>
         </div>
         <div>
             <label asp-for="EquipmentId" class="form-label">Equipment</label> 
-            <select asp-for="EquipmentId" class="form-control">
+            <select asp-for="EquipmentId" class="form-control @(ViewData.ModelState["EquipmentId"]?.Errors.Count > 0 ? "is-invalid" : "")">
                 <option value="">Choose an option</option>
                 @foreach (var eq in ViewBag.Equipment)
                 {
                     <option value="@eq.Id">@eq.Description</option>
                 }
             </select>
-            <span asp-validation-for="EquipmentId" class="text-danger"></span>
+            <span asp-validation-for="EquipmentId" class="invalid-feedback"></span>
         </div>
         <div>
             <label asp-for="RequestDetails" class="form-label">Reason for the request:</label>
-            <textarea asp-for="RequestDetails" class="form-control"></textarea>
-            <span asp-validation-for="RequestDetails" class="text-danger"></span>
+            <textarea asp-for="RequestDetails" class="form-control @(ViewData.ModelState["RequestDetails"]?.Errors.Count > 0 ? "is-invalid" : "")"></textarea>
+            <span asp-validation-for="RequestDetails" class="invalid-feedback"></span>
         </div>
         <div>
             <label asp-for="Borrow.DurationDays" class="form-label">Duration required: (number of days):</label>
-            <input asp-for="Borrow.DurationDays" class="form-control" type="number" />
-            <span asp-validation-for="Borrow.DurationDays" class="text-danger"></span>
+            <input asp-for="Borrow.DurationDays" class="form-control @(ViewData.ModelState["Borrow.DurationDays"]?.Errors.Count > 0 ? "is-invalid" : "")" type="number" />
+            <span asp-validation-for="Borrow.DurationDays" class="invalid-feedback"></span>
         </div>
         <div style="margin-top:10px">
         <button class="btn btn-primary" type="submit">Submit Request</button>
