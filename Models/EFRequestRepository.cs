@@ -12,8 +12,7 @@ public class EFRequestRepository : IRequestRepository
 
     public IQueryable<ITEquipmentRequest> GetAll()
     {
-        return context.Requests
-            .OrderByDescending(r => r.CreatedAt);
+        return context.Requests;
     }
 
     public IQueryable<ITEquipmentRequest> GetPending() =>

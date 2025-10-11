@@ -65,9 +65,23 @@ public class HomeController : Controller
         var equipments = equipmentRepository.GetAll()
                                     .Where(e => equipmentIds.Contains(e.Id))
                                     .ToDictionary(e => e.Id, e => e);
-        ViewBag.Equipments = equipments;
+        
+        var viewModel = requests.Select(r => new RequestWithEquipmentViewModel
+        {
+            RequestId = r.Id,
+            RequesterName = r.Requester.Name,
+            RequesterRole = r.Requester.Role.ToString(),
+            EquipmentType = equipments.ContainsKey(r.EquipmentId)
+                            ? equipments[r.EquipmentId].Type.ToString()
+                            : "Unknown",
+            DurationDays = r.Borrow.DurationDays,
+            Status = r.Status,
+            CreatedAt = r.CreatedAt
+        })
+        .OrderByDescending(r => r.CreatedAt)
+        .ToList();
 
-        return View(requests);
+        return View(viewModel);
     }
 
     [HttpPost]

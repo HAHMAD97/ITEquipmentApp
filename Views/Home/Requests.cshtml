@@ -1,7 +1,4 @@
-@model IEnumerable<ITEquipmentBorrowApp.Models.ITEquipmentRequest>
-@{
-    var equipments = ViewBag.Equipments as Dictionary<int, ITEquipmentBorrowApp.Models.ITEquipment>;
-}
+@model IEnumerable<ITEquipmentBorrowApp.Models.RequestWithEquipmentViewModel>
 <div>
     <h2>All Equipment Requests</h2>
     <table class="table">
@@ -19,19 +16,10 @@
             @foreach (var request in Model)
             {
                 <tr>
-                <td>
-                    @if (equipments != null && equipments.ContainsKey(request.EquipmentId))
-                    {
-                        @equipments[request.EquipmentId].Type
-                    }
-                    else
-                    {
-                        <span class="text-muted">Unknown</span>
-                    }
-                </td>
-                    <td>@request.Requester.Name</td>
-                    <td>@request.Requester.Role</td>
-                    <td>@request.Borrow.DurationDays</td>
+                    <td>@request.EquipmentType</td>
+                    <td>@request.RequesterName</td>
+                    <td>@request.RequesterRole</td>
+                    <td>@request.DurationDays</td>
                     <td class="@(
                         request.Status == RequestStatus.Accepted ? "text-success" :
                         request.Status == RequestStatus.Denied ? "text-danger" :
@@ -41,11 +29,11 @@
                     </td>
                     <td>
                         <form asp-action="Accept" method="post" class="d-inline">
-                            <input type="hidden" name="id" value="@request.Id" />
+                            <input type="hidden" name="id" value="@request.RequestId" />
                             <button type="submit" class="btn btn-success btn-sm">Accept</button>
                         </form>
                         <form asp-action="Deny" method="post" class="d-inline">
-                            <input type="hidden" name="id" value="@request.Id" />
+                            <input type="hidden" name="id" value="@request.RequestId" />
                             <button type="submit" class="btn btn-danger btn-sm">Deny</button>
                         </form>
                     </td>
