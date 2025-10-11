@@ -1,4 +1,7 @@
 @model IEnumerable<ITEquipmentBorrowApp.Models.ITEquipmentRequest>
+@{
+    var equipments = ViewBag.Equipments as Dictionary<int, ITEquipmentBorrowApp.Models.ITEquipment>;
+}
 <div>
     <h2>All Equipment Requests</h2>
     <table class="table">
@@ -16,7 +19,16 @@
             @foreach (var request in Model)
             {
                 <tr>
-                    <td>@request.Equipment.Type</td>
+                <td>
+                    @if (equipments != null && equipments.ContainsKey(request.EquipmentId))
+                    {
+                        @equipments[request.EquipmentId].Type
+                    }
+                    else
+                    {
+                        <span class="text-muted">Unknown</span>
+                    }
+                </td>
                     <td>@request.Requester.Name</td>
                     <td>@request.Requester.Role</td>
                     <td>@request.Borrow.DurationDays</td>

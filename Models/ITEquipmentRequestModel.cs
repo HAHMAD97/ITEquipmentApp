@@ -14,8 +14,6 @@ public class ITEquipmentRequest
     public Borrow Borrow { get; set; }
 
     public int EquipmentId { get; set; } 
-    
-    public ITEquipment Equipment { get; set; }
 
     public RequestStatus Status { get; set; } = RequestStatus.Pending;
 

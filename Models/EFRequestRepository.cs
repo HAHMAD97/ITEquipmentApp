@@ -13,8 +13,6 @@ public class EFRequestRepository : IRequestRepository
     public IQueryable<ITEquipmentRequest> GetAll()
     {
         return context.Requests
-            .Include(r => r.Requester)
-            .Include(r => r.Equipment)
             .OrderByDescending(r => r.CreatedAt);
     }
 

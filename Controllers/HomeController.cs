@@ -60,7 +60,14 @@ public class HomeController : Controller
     [HttpGet]
     public ViewResult Requests()
     {
-        return View(requestRepository.GetAll());
+        var requests = requestRepository.GetAll().ToList();
+        var equipmentIds = requests.Select(r => r.EquipmentId).Distinct().ToList();
+        var equipments = equipmentRepository.GetAll()
+                                    .Where(e => equipmentIds.Contains(e.Id))
+                                    .ToDictionary(e => e.Id, e => e);
+        ViewBag.Equipments = equipments;
+
+        return View(requests);
     }
 
     [HttpPost]
