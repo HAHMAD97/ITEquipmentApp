@@ -8,9 +8,6 @@ public class ITEquipmentRequest
     
     public Requester Requester { get; set; }
 
-    [Required(ErrorMessage = "Please enter the type of equipment being requested")]
-    public string EquipmentType { get; set; }
-
     [Required(ErrorMessage = "Please provide a reason for the request")]
     public string RequestDetails { get; set; }
 

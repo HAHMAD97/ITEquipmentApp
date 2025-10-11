@@ -27,6 +27,8 @@ public class HomeController : Controller
     
     [HttpGet]
     public ViewResult RequestForm() {
+        var availableEquipment = equipmentRepository.GetAvailable().ToList();
+        ViewBag.Equipment = availableEquipment;
         return View();
     }
 
@@ -37,6 +39,8 @@ public class HomeController : Controller
             requestRepository.Add(request);
             return View("Confirmation", request);
         } else {
+            var availableEquipment = equipmentRepository.GetAvailable().ToList();
+            ViewBag.Equipment = availableEquipment;
             return View();
         }
     }

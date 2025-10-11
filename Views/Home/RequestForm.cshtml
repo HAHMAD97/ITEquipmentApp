@@ -27,15 +27,15 @@
             <span asp-validation-for="Requester.Role" class="text-danger"></span>
         </div>
         <div>
-            <label asp-for="EquipmentType" class="form-label">Type of equipment:</label> 
-            <select asp-for="EquipmentType" class="form-control">
+            <label asp-for="EquipmentId" class="form-label">Equipment</label> 
+            <select asp-for="EquipmentId" class="form-control">
                 <option value="">Choose an option</option>
-                <option value="Laptop">Laptop</option>  
-                <option value="Phone">Phone</option>
-                <option value="Tablet">Tablet</option>
-                <option value="Other">Other</option>
+                @foreach (var eq in ViewBag.Equipment)
+                {
+                    <option value="@eq.Id">@eq.Description</option>
+                }
             </select>
-            <span asp-validation-for="EquipmentType" class="text-danger"></span>
+            <span asp-validation-for="EquipmentId" class="text-danger"></span>
         </div>
         <div>
             <label asp-for="RequestDetails" class="form-label">Reason for the request:</label>
