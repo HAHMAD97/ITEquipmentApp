@@ -14,7 +14,8 @@ public class EFRequestRepository : IRequestRepository
     {
         return context.Requests
             .Include(r => r.Requester)
-            .Include(r => r.Equipment);
+            .Include(r => r.Equipment)
+            .OrderByDescending(r => r.CreatedAt);
     }
 
     public IQueryable<ITEquipmentRequest> GetPending() =>
